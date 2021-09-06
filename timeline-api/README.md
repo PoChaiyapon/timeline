@@ -1,4 +1,5 @@
-# node-mysql-registration-login-api
+# Timeline-api
+# node-mysql
 
 Node.js + MySQL API for User Management, Authentication and Registration
 
