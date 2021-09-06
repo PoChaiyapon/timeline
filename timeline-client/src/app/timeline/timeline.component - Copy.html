@@ -1,0 +1,118 @@
+<div class="container page-content" aria-sort="descending">
+  <div class="row">
+    <div class="col-sm-12 col-md">
+      <ngx-timeline [events]="events">
+        <ng-template let-event let-index="rowIndex" timelineBody>
+          <div>{{event.body}}</div>
+          <div class="button-row">
+            <button type="button" class="btn btn-primary" (click)="editEvent(index, eventmodal)"><i
+                class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-danger" (click)="deleteEvent(index)"><i
+                class="fa fa-trash"></i></button>
+          </div>
+        </ng-template>
+      </ngx-timeline>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary" (click)="addEvent(eventmodal)"><i class="fa fa-plus"></i>
+        Add</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #eventmodal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Event</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group full-width-input">
+        <label>Name</label>
+        <input class="form-control" placeholder="Event Name" formControlName="name" required>
+      </div>
+      <div class="form-group full-width-input">
+        <label>Description</label>
+        <input class="form-control" formControlName="description">
+      </div>
+      <div class="form-group full-width-input">
+        <label>Date</label>
+        <input class="form-control" formControlName="date" bsDatepicker>
+      </div>
+      <div class="button-row">
+        <button type="button" class="btn btn-primary" (click)="modalCallback()">Submit</button>
+        <button type="button" class="btn btn-light" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+<!-- <div class="content" role="main">
+  <div class="inner-container" style="margin-top: -100px;"> -->
+    <!-- ALL CONFIGURATIONS -->
+    <!-- <form [formGroup]="form">
+      <div class="form-container">
+        <div class="form-select" *ngFor="let configuration of configurations">
+          <label>{{configuration.label}}</label>
+          <select formControlName="{{configuration.formControlName}}">
+            <option *ngFor="let option of configuration.options" [ngValue]="option.value">{{ option.name }}</option>
+          </select>
+        </div>
+      </div>
+    </form> -->
+    <!-- ngx-timeline -->
+    <!-- <ngx-timeline [events]="events"
+      [ngClass]="form.get('customClass').value ? 'inter' : ''"
+      [langCode]="form.get('langCode').value" 
+      [enableAnimation]="false"
+      [groupEvent]="form.get('groupEvent').value" 
+      [changeSideInGroup]="form.get('changeSideInGroup').value"
+      [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
+      [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
+      [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
+      [dateInstantCustomTemplate]="form.get('dateInstantCustomTemplate').value ? dateInstantCustomTemplate : null"
+      [periodCustomTemplate]="form.get('periodCustomTemplate').value ? periodCustomTemplate : null"
+      (clickEmitter)="form.get('clickEmitter').value ? handleClick($event) : null">
+    </ngx-timeline>
+  </div> -->
+
+  <!-- CUSTOM TEMPLATES -->
+  <!-- <ng-template #periodCustomTemplate let-period=period let-index=index>
+    <div [ngClass]="{'transparent first-line': !index}" class="line"></div>
+    <div class="period-container">
+      <p>
+        {{index}} - {{period?.firstDate | ngxdate }}
+      </p>
+    </div>
+    <div class="line"></div>
+  </ng-template>
+
+  <ng-template #centerIconCustomTemplate>
+    <div class="icon-container">
+      <img src="assets/inter.png" />
+    </div>
+  </ng-template>
+
+  <ng-template #innerEventCustomTemplate let-event=event>
+    <div class="event" (click)="handleClick(event)">
+      {{event | json}}
+    </div>
+  </ng-template>
+
+  <ng-template #eventCustomTemplate let-event=event let-colSidePosition=colSidePosition>
+    <div class="event" (click)="handleClick(event)">
+      {{event | json}}
+    </div>
+  </ng-template>
+
+  <ng-template #dateInstantCustomTemplate let-item=item>
+    <span>
+      {{item?.timestamp | ngxdate : ngxDateFormat.FULL_DATE }}
+    </span>
+  </ng-template>
+
+
+</div> -->

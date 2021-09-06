@@ -1,0 +1,74 @@
+<!-- for add event with modal-->
+
+<div class="container page-content">
+  <div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-success" (click)="addEvent(eventmodal)"><i class="fa fa-plus"></i>Add เพิ่มไทมไลน์</button> &nbsp;
+      <button type="button" class="btn btn-primary" (click)="getEventToday()"><i class="fa fa-plus"></i>ดูวันนี้</button>&nbsp;
+      <button type="button" class="btn btn-primary" (click)="getEventMonth()"><i class="fa fa-plus"></i>ดูเดือนนี้</button>&nbsp;
+      <button type="button" class="btn btn-primary" (click)="getEventAll()"><i class="fa fa-plus"></i>ดูทั้งหมด</button>&nbsp;
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-sm-12 col-md">
+      <ngx-timeline [events]="events"
+        [ngClass]="form.get('customClass').value ? 'inter' : ''"
+        [langCode]="form.get('langCode').value" 
+        [enableAnimation]="false"
+        [groupEvent]="form.get('groupEvent').value" 
+        [changeSideInGroup]="form.get('changeSideInGroup').value"
+        >
+        <!-- <ngx-timeline [events]="events" [ngClass]="form.get('customClass').value ? 'inter' : ''"
+          [langCode]="form.get('langCode').value" [enableAnimation]="false" [groupEvent]="form.get('groupEvent').value"
+          [changeSideInGroup]="form.get('changeSideInGroup').value"
+          [eventCustomTemplate]="form.get('eventCustomTemplate').value ? eventCustomTemplate : null"
+          [innerEventCustomTemplate]="form.get('innerEventCustomTemplate').value ? innerEventCustomTemplate : null"
+          [centerIconCustomTemplate]="form.get('centerIconCustomTemplate').value ? centerIconCustomTemplate : null"
+          [dateInstantCustomTemplate]="form.get('dateInstantCustomTemplate').value ? dateInstantCustomTemplate : null"
+          [periodCustomTemplate]="form.get('periodCustomTemplate').value ? periodCustomTemplate : null"> -->
+      </ngx-timeline>
+    </div>
+  </div>
+</div>
+
+<ng-template #eventmodal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Event สถานที่</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="evform" (ngSubmit)="onSubmit()">
+      <div class="form-group full-width-input">
+        <label>วันที่</label>
+        <input class="form-control" formControlName="date" bsDatepicker>
+      </div>
+      <div class="form-group full-width-input">
+        <label>ชื่อสถานที่</label>
+        <input class="form-control" placeholder="ระบุสถานที่" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">ระบุสถานที่ด้วย!</div>
+        </div>
+      </div>
+      <div class="form-group full-width-input">
+        <label>คำอธิบาย</label>
+        <input class="form-control" placeholder="ระบุคำอธิบาย เช่น กินข้าว ซื้อของ" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+          <div *ngIf="f.description.errors.required">ระบุคำอธิบายด้วย!</div>
+        </div>
+      </div>
+      <!-- <div class="form-group full-width-input">
+        <label>วันที่</label>
+        <input class="form-control" formControlName="date" bsDatepicker>
+      </div> -->
+      <div class="button-row">
+        <button type="button" class="btn btn-primary" (click)="createEvent()">Submit</button>
+        <button type="button" class="btn btn-light" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<!-- end for add event with modal-->
