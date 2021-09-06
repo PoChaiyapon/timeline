@@ -16,4 +16,5 @@ cd timeline-client
 - npm start
 
 # Example app / ตัวอย่างหน้าแอพ
-![image](https://user-images.githubusercontent.com/36843170/132190879-9ed87751-7c0a-473c-80d3-dad065df4cd8.png)
+![image](https://user-images.githubusercontent.com/36843170/132191391-34a87c37-a1b7-40c4-80dd-7f21a3dbea08.png)
+
