@@ -14,3 +14,6 @@ cd timeline-api
 cd timeline-client
 - npm install
 - npm start
+
+Example
+![image](https://user-images.githubusercontent.com/36843170/132190879-9ed87751-7c0a-473c-80d3-dad065df4cd8.png)
